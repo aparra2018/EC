@@ -69,48 +69,11 @@ export const Vis = (props) => {
         }
     }
 
-    function estadigrafo(estf){
-        if(estf!=null){
-            var Titulo=[]
-            var Valor=[]
-            for(let x in estf){
-                let Campos=estf[x]  
-                Titulo.push(String(Campos[0]))
-                Valor.push(String(Campos[1]))
-            }   
-            let headers=[];
-            for(let x in Titulo){
-                headers.push(<th>{Titulo[x]}</th>)
-            }
-            let body=[];
-            for(let x in Valor){
-                body.push(<th>{Valor[x]}</th>)
-            }
-            console.log(headers)
-            return( <Table className="table">
-                        <thead className="table-dark">
-                            <tr>
-                                {headers}
-                            </tr>
-                        </thead>
-                        <tbody className="table-secondary">
-                            <tr>
-                                {body}
-                            </tr>
-                        </tbody>
-                    </Table>)
-        }
-    }
-
     return(
     <div id="Visualizador" className="scrollbar">
         <div className="seleccionados">
             Seleccionados:
             <ul id="Listado"></ul>
-            <div id="estf"> </div>
-        </div>
-        <div>
-            {estadigrafo(props.est)}
         </div>
         <div className="split left">
         {
@@ -120,9 +83,6 @@ export const Vis = (props) => {
         <div className="split right">
             {Imagen(props.img)}
         </div>
-       {/* <div className="split right down">
-            {Imagen(props.tf)}
-        </div> */}
     </div>
     )
 }

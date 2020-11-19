@@ -1,10 +1,7 @@
 import React,{useState} from 'react';
 import {Vis} from './components/visualizador'
-import {Exa} from './components/examinador'
 import {Sim} from './components/simplificado'
-import {Exp} from './components/exportar'
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Row, Col } from 'reactstrap';
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,29 +20,20 @@ function App() {
   const Img=(imagenRes)=>{
     setImagen(imagenRes)
   }
-  const [tablaf,setTablaF]=useState();
-  const Tf=(imagenRes)=>{
-    setTablaF(imagenRes)
-  }
   const [campos,setCampos]=useState();
   const Cmp=(camposRes)=>{
     setCampos(camposRes)
-  }
-  const [estadigrafo,setEstadigrafo]=useState();
-  const Est=(estadigrafoRes)=>{
-    setEstadigrafo(estadigrafoRes)
   }
   
   return (
     <Router>
     <div className="container" path="/">
-      <Sim env={archivo} res={Res} setImagen={Img} camps={campos} setEstadigrafo={Est} setTablaF={Tf}/>
-      {/* <Exa res={Res}/> */}
+      <Sim env={archivo} res={Res} setImagen={Img} camps={campos}/>
     </div>
     <hr />
     <Switch>
       <Route path="/">
-      <Vis env={archivo} setArchivo={Res} img={imagen} setCampos={Cmp} est={estadigrafo} tf={tablaf}/>
+      <Vis env={archivo} setArchivo={Res} img={imagen} setCampos={Cmp}/>
       </Route>
     </Switch>
   </Router>  
