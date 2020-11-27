@@ -26,15 +26,12 @@ def EstadisticaDesdeArchivo(request):
         archivo=parametro[0]
         parametro1=str(parametro[1][1])
         parametro2=str(parametro[1][0])
-        image_data=None
         if(len(archivo)>0):
             dato = json.loads(archivo)
             res = estadistica.Mostrar(dato,parametro1,parametro2)
             nom,val = estadistica.Suma(res)
-            estadistica.Graficar(nom, val)
-            with open("grafico.png", "rb") as image_file:
-                image_data = base64.b64encode(image_file.read()).decode('utf-8')
-        return Response(image_data)
+            graf = [[nom,val]]
+        return Response(graf)
 
 @api_view(['POST'])
 def ModaDesdeArchivo(request):
@@ -103,10 +100,33 @@ def TablaFrecuenciaDesdeArchivo(request):
         if(len(archivo)>0):
             dato = json.loads(archivo)
             res = estadistica.Mostrar(dato,parametro1,parametro2)
-            Aprobado=estadistica.Comparador(res,estadistica.TablaFrecuencia,parametro1,parametro2)
-            if(Aprobado==True):
-                with open("tabla.png", "rb") as image_file:
-                    image_data = base64.b64encode(image_file.read()).decode('utf-8')
-                return Response(image_data)
+            estadigrafos=estadistica.Comparador(res,estadistica.TablaFrecuencia,parametro1,parametro2)
+        return Response(estadigrafos)
+
+@api_view(['POST'])
+def MostrarEnMapa(request):
+    if request.method=='POST':
+        parametro=request.data
+        archivo=parametro[0]
+        parametro1=str(parametro[1][1])
+        parametro2=str(parametro[1][0])
+        if(len(archivo)>0):
+            dato = json.loads(archivo)
+            if(parametro1=="lat" or parametro1=="lon"):
+                res = estadistica.Mostrar(dato,"lat",parametro2)
+                estadigrafos1=estadistica.Comparador(res,estadistica.DatosParaMapa,"lat",parametro2)
+                res = estadistica.Mostrar(dato,"lon",parametro2)
+                estadigrafos2=estadistica.Comparador(res,estadistica.DatosParaMapa,"lon",parametro2)
+                return Response([estadigrafos1,estadigrafos2])
+            elif(parametro2=="lat" or parametro2=="lon"):
+                res = estadistica.Mostrar(dato,parametro1,"lat")
+                estadigrafos1=estadistica.Comparador(res,estadistica.DatosParaMapa,parametro1,"lat")
+                res = estadistica.Mostrar(dato,"lon",parametro2)
+                estadigrafos2=estadistica.Comparador(res,estadistica.DatosParaMapa,"lon",parametro2)
+                return Response([estadigrafos1,estadigrafos2])
             else:
                 return Response(False)
+        else:
+                return Response(False)
+        
+            

@@ -1,7 +1,11 @@
 import React,{useState} from 'react';
 import {Vis} from './components/visualizador'
+import {Exa} from './components/examinador'
 import {Sim} from './components/simplificado'
+import {Mos} from './components/mostrador'
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-here-map';
+import { Container, Row, Col } from 'reactstrap';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,46 +20,44 @@ function App() {
   const Res=(archivoRes)=>{
     setArchivo(archivoRes)
   }
-  const [imagen,setImagen]=useState();
-  const Img=(imagenRes)=>{
-    setImagen(imagenRes)
+  const [datos,setGrafico]=useState();
+  const Gra=(datosRes)=>{
+    setGrafico(datosRes)
   }
   const [campos,setCampos]=useState();
   const Cmp=(camposRes)=>{
     setCampos(camposRes)
   }
-  
+  const [estadigrafo,setEstadigrafo]=useState();
+  const Est=(estadigrafoRes)=>{
+    setEstadigrafo(estadigrafoRes)
+  }
+  const [ubicacion,setUbicacion]=useState();
+  const Ubi=(ubicacionRes)=>{
+    setUbicacion(ubicacionRes)
+  }
   return (
-    <Router>
-    <div className="container" path="/">
-      <Sim env={archivo} res={Res} setImagen={Img} camps={campos}/>
-    </div>
-    <hr />
-    <Switch>
-      <Route path="/">
-      <Vis env={archivo} setArchivo={Res} img={imagen} setCampos={Cmp}/>
-      </Route>
-    </Switch>
-  </Router>  
-    /**<Container>
+    <Container>
       <Row>
-        <Col>
-          <Vis env={archivo} setArchivo={Res} img={imagen} setCampos={Cmp} est={estadigrafo} tf={tablaf}/>
-        </Col>
-        <Col>
-          <Sim env={archivo} res={Res} setImagen={Img} camps={campos} setEstadigrafo={Est} setTablaF={Tf}/>
-        </Col>
-        <Col>
+        <Router>
+        <div path="/">
           <Exa res={Res}/>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={{ offset: 10 }}>
-          <Exp res={Res}/>
-        </Col>
-      </Row>
-    </Container>
-  ***/
+          <Sim env={archivo} res={Res} setGrafico={Gra} camps={campos} setEstadigrafo={Est} setUbicacion={Ubi}/> 
+        </div>
+        <hr />
+        <Switch>
+          <Route path="/">
+            <Col sm="6">
+              <Vis env={archivo} setCampos={Cmp} />
+            </Col>
+            <Col sm="6">
+          <Mos setArchivo={Res} datos={datos}  est={estadigrafo} ubicacion={ubicacion}/>
+          </Col>
+          </Route>
+        </Switch>
+      </Router>
+    </Row>
+  </Container>  
     );
 }
 

@@ -1,12 +1,11 @@
-import React,{Image} from 'react'
+import React from 'react'
 import ReactJson from 'react-json-view'
 import './comps.css';
-import {Table} from 'reactstrap';
 export const Vis = (props) => {
     var Seleccionados=[];
-    function onEdit(fields){
+    /*function onEdit(fields){
         console.log(fields)
-    }
+    }*/
     function onSelect(fields){
         let StrFields=JSON.stringify(fields)
         if(Seleccionados.includes(StrFields)===false){
@@ -24,7 +23,7 @@ export const Vis = (props) => {
             let Campos=JSON.parse(Seleccionados[pos])
             Listado.push(String("Campo: "+Campos["name"]+" desde: "+Campos["namespace"]))
         }
-        document.getElementById("Listado").innerHTML=""
+        document.getElementById("Listado").innerHTML="Seleccionados:"
         for(let pos in Listado){
             document.getElementById("Listado").innerHTML+=(
                 "<li>"+String(Listado[pos])+"</li>"
@@ -33,7 +32,6 @@ export const Vis = (props) => {
     }
 
     function ActualizarCampos(Lista){
-        
         let Campo=JSON.parse(Lista[0])
         let Campo1=Campo["name"]
         let Campo2="";
@@ -61,27 +59,15 @@ export const Vis = (props) => {
             )
         }
     }
-    function Imagen(img){
-        if(img!=null){
-            return(
-                <img src={`data:image/gif;base64,${img}`} />
-            )
-        }
-    }
-
     return(
-    <div id="Visualizador" className="scrollbar">
+    <div>
         <div className="seleccionados">
-            Seleccionados:
             <ul id="Listado"></ul>
         </div>
-        <div className="split left">
+        <div>
         {
             IfNotNull(props.env)
         }
-        </div>
-        <div className="split right">
-            {Imagen(props.img)}
         </div>
     </div>
     )
