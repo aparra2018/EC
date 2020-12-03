@@ -1,4 +1,6 @@
 import axios from 'axios';
+import React from 'react';
+import {DropdownItem} from 'reactstrap';
 function IsValidJSON(str){
     try{
         JSON.parse(str)
@@ -47,7 +49,7 @@ export function PostDatos(Archivo){
 }
 
 
-export function ConseguirArchivo(props,ID){
+export function ConseguirArchivo(set,ID){
     let config = {
         method: 'GET',
         url: 'http://localhost:8000/ObtieneArchivo/'+String(ID),
@@ -59,11 +61,11 @@ export function ConseguirArchivo(props,ID){
         .then((response) => {
             let Data=response.data;
             if(IsValidJSON(Data.file)===true){
-                props.res(Data.file)
+                set(Data.file)
             }
             else{
                 alert("El archivo no es válido")
-                props.res(null)
+                set(null)
             }
         })
         .catch((error) => {
@@ -209,6 +211,28 @@ export function ObtenerDatosMapa(SetUbicacion,Archivo,Campos){
             else{
                 alert("Campos incorrectos")
             }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
+export function GetNombres(set,setLista){
+    let config = {
+        method: 'GET',
+        url: 'http://localhost:8000/ObtieneNombres/',
+        headers: { 
+            'Content-Type': 'application/json'
+        }
+    };
+    axios(config)
+        .then((response) => {
+            var Mens=[]
+            let Datos=response.data;
+            for(let x in Datos){
+                Mens.push(<DropdownItem onClick={()=>ConseguirArchivo(set,Datos[x][1])} key={x}>{Datos[x][0]}</DropdownItem>)
+            }
+            setLista(Mens)
         })
         .catch((error) => {
             console.log(error);

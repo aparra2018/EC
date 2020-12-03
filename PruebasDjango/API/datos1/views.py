@@ -128,5 +128,13 @@ def MostrarEnMapa(request):
                 return Response(False)
         else:
                 return Response(False)
-        
+
+@api_view(['GET','POST','DELETE']) 
+def GetNombres(request): 
+    if request.method=='GET': 
+        Datos=datos1.objects.values("id")
+        Nombres=[] 
+        for i in range(0,len(Datos)): 
+            Nombres.append([Datos[i]["id"],Datos[i]["id"]]) 
+        return Response(Nombres)
             

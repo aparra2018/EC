@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'modaDesdeArchivo/',views.ModaDesdeArchivo),
     url(r'desviacionEstandarDesdeArchivo/',views.DesviacionEstandarDesdeArchivo),
     url(r'tablaFDesdeArchivo/',views.TablaFrecuenciaDesdeArchivo),
-    url(r'mostrarEnMapa/',views.MostrarEnMapa)
+    url(r'mostrarEnMapa/',views.MostrarEnMapa),
+    url(r'ObtieneNombres/',views.GetNombres)
 ]
