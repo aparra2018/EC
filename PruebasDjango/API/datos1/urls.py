@@ -9,11 +9,6 @@ urlpatterns = [
     url(r'DB/',include(router.urls)),
     url(r'ObtieneArchivo/(?P<parametro>[\w\-]+)/$',views.GetDatos),
     url(r'estadisticaDesdeArchivo/',views.EstadisticaDesdeArchivo),
-    url(r'mediaDesdeArchivo/',views.MediaDesdeArchivo),
-    url(r'medianaDesdeArchivo/',views.MedianaDesdeArchivo),
-    url(r'modaDesdeArchivo/',views.ModaDesdeArchivo),
-    url(r'desviacionEstandarDesdeArchivo/',views.DesviacionEstandarDesdeArchivo),
-    url(r'tablaFDesdeArchivo/',views.TablaFrecuenciaDesdeArchivo),
     url(r'mostrarEnMapa/',views.MostrarEnMapa),
     url(r'ObtieneNombres/',views.GetNombres)
 ]

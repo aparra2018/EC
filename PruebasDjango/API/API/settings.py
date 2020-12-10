@@ -78,10 +78,7 @@ WSGI_APPLICATION = 'API.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'DJongoBD-EcuacionesDiferenciales',
-        'CLIENT':{
-            'host': 'mongodb+srv://moderator:pass123@cluster0.g2uux.mongodb.net/demodatabase?retryWrites=true&w=majority'
-        }
+        'NAME': 'DJongoBD-EcuacionesDiferenciales'
     }
 }
 

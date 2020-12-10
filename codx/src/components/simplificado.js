@@ -1,9 +1,8 @@
 
 import React,{useState} from 'react'
 import { Nav, NavItem, Button, NavbarText,ButtonDropdown,DropdownItem,DropdownToggle,DropdownMenu} from 'reactstrap';
-import {ConseguirArchivo,GetNombres, PostDatos,TablaFrecuenciasDesdeArchivo, GraficarDesdeArchivo, ObtenerDatosMapa} from './consultas';
+import {ConseguirArchivo,GetNombres, PostDatos, GraficarDesdeArchivo, ObtenerDatosMapa} from './consultas';
 import './comps.css';
-import {Menu,MenuItem } from '@szhsin/react-menu';
 import '@szhsin/react-menu/dist/index.css';
 
 export const Sim = (props) => {
@@ -34,7 +33,6 @@ export const Sim = (props) => {
         </NavItem>
       <NavItem>
             <Button color="primary" onClick={()=>GraficarDesdeArchivo(props.setGrafico,props.env,props.camps)}>Graficar Desde Archivo</Button>
-            <Button color="primary" onClick={()=>TablaFrecuenciasDesdeArchivo(props.setEstadigrafo,props.env,props.camps)}>Tabla de Frecuencias</Button>
             <Button color="primary" onClick={()=>ObtenerDatosMapa(props.setUbicacion,props.env,props.camps)}>Mostrar en Mapa</Button>
         </NavItem>
       </Nav>

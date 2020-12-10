@@ -4,17 +4,12 @@ import {Exa} from './components/examinador'
 import {Sim} from './components/simplificado'
 import {Mos} from './components/mostrador'
 import 'bootstrap/dist/css/bootstrap.css';
-import 'react-here-map';
 import { Container, Row, Col } from 'reactstrap';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-
-//import './App.css';
-
 function App() {
   const [archivo,setArchivo]=useState();
   const Res=(archivoRes)=>{
@@ -28,10 +23,6 @@ function App() {
   const Cmp=(camposRes)=>{
     setCampos(camposRes)
   }
-  const [estadigrafo,setEstadigrafo]=useState();
-  const Est=(estadigrafoRes)=>{
-    setEstadigrafo(estadigrafoRes)
-  }
   const [ubicacion,setUbicacion]=useState();
   const Ubi=(ubicacionRes)=>{
     setUbicacion(ubicacionRes)
@@ -42,7 +33,7 @@ function App() {
         <Router>
         <div path="/">
           <Exa res={Res}/>
-          <Sim env={archivo} res={Res} setGrafico={Gra} camps={campos} setEstadigrafo={Est} setUbicacion={Ubi}/> 
+          <Sim env={archivo} res={Res} setGrafico={Gra} camps={campos} setUbicacion={Ubi}/> 
         </div>
         <hr />
         <Switch>
@@ -51,7 +42,7 @@ function App() {
               <Vis env={archivo} setCampos={Cmp} />
             </Col>
             <Col sm="6">
-          <Mos setArchivo={Res} datos={datos}  est={estadigrafo} ubicacion={ubicacion}/>
+          <Mos setArchivo={Res} datos={datos}  ubicacion={ubicacion}/>
           </Col>
           </Route>
         </Switch>

@@ -34,76 +34,6 @@ def EstadisticaDesdeArchivo(request):
         return Response(graf)
 
 @api_view(['POST'])
-def ModaDesdeArchivo(request):
-    if request.method=='POST':
-        parametro=request.data
-        archivo=parametro[0]
-        parametro1=str(parametro[1][1])
-        parametro2=str(parametro[1][0])
-        estadigrafos=None
-        if(len(archivo)>0):
-            dato = json.loads(archivo)
-            res = estadistica.Mostrar(dato,parametro1,parametro2)
-            estadigrafos=estadistica.CalcularModa(res)
-        return Response(estadigrafos)
-
-@api_view(['POST'])
-def MediaDesdeArchivo(request):
-    if request.method=='POST':
-        parametro=request.data
-        archivo=parametro[0]
-        parametro1=str(parametro[1][1])
-        parametro2=str(parametro[1][0])
-        estadigrafos=None
-        if(len(archivo)>0):
-            dato = json.loads(archivo)
-            res = estadistica.Mostrar(dato,parametro1,parametro2)
-            estadigrafos=estadistica.Comparador(res,estadistica.CalcularMedia,parametro1,parametro2)
-        return Response(estadigrafos)
-
-@api_view(['POST'])
-def MedianaDesdeArchivo(request):
-    if request.method=='POST':
-        parametro=request.data
-        archivo=parametro[0]
-        parametro1=str(parametro[1][1])
-        parametro2=str(parametro[1][0])
-        estadigrafos=None
-        if(len(archivo)>0):
-            dato = json.loads(archivo)
-            res = estadistica.Mostrar(dato,parametro1,parametro2)
-            estadigrafos=estadistica.Comparador(res,estadistica.CalcularMediana,parametro1,parametro2)
-        return Response(estadigrafos)
-
-@api_view(['POST'])
-def DesviacionEstandarDesdeArchivo(request):
-    if request.method=='POST':
-        parametro=request.data
-        archivo=parametro[0]
-        parametro1=str(parametro[1][1])
-        parametro2=str(parametro[1][0])
-        estadigrafos=None
-        if(len(archivo)>0):
-            dato = json.loads(archivo)
-            res = estadistica.Mostrar(dato,parametro1,parametro2)
-            estadigrafos=estadistica.Comparador(res,estadistica.CalcularDesviacionE,parametro1,parametro2)
-        return Response(estadigrafos)
-
-@api_view(['POST'])
-def TablaFrecuenciaDesdeArchivo(request):
-    if request.method=='POST':
-        parametro=request.data
-        archivo=parametro[0]
-        parametro1=str(parametro[1][1])
-        parametro2=str(parametro[1][0])
-        estadigrafos=None
-        if(len(archivo)>0):
-            dato = json.loads(archivo)
-            res = estadistica.Mostrar(dato,parametro1,parametro2)
-            estadigrafos=estadistica.Comparador(res,estadistica.TablaFrecuencia,parametro1,parametro2)
-        return Response(estadigrafos)
-
-@api_view(['POST'])
 def MostrarEnMapa(request):
     if request.method=='POST':
         parametro=request.data
@@ -129,7 +59,7 @@ def MostrarEnMapa(request):
         else:
                 return Response(False)
 
-@api_view(['GET','POST','DELETE']) 
+@api_view(['GET']) 
 def GetNombres(request): 
     if request.method=='GET': 
         Datos=datos1.objects.values("id")

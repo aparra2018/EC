@@ -1,6 +1,5 @@
 import React from 'react'
 import './comps.css'
-import {Table} from 'reactstrap'
 import CanvasJSReact from '../assets/canvasjs.react'
 import Map from './Map/Map';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -22,7 +21,6 @@ export const Mos = (props) => {
             for(let x in labs){
                 DataPoints.push({label:labs[x],y:val[x]})
             }
-            
             const grafico = {
                 title: {
                   text: "Grafico de cantidad"
@@ -53,53 +51,10 @@ export const Mos = (props) => {
             )
         }
     }
-
-    function estadigrafo(estf){
-        if(estf!=null){
-            var Titulo=[]
-            var Valor=[]
-            for(let x in estf){
-                let Campos=estf[x]  
-                Titulo.push(Campos[0])
-                Valor.push(Campos[1])
-            }   
-            let headers=[];
-            for(let x in Titulo){
-                headers.push(<th>{Titulo[x]}</th>)
-            }
-            let partes=[];
-            let body=[];
-            let bodyF=[];
-            for(let x in Valor){
-                partes[x]=Valor[x].toString().split(',');
-            }
-            for(let x in partes[0]){
-                body = []
-                for(let y in partes){
-                    body.push(<th>{partes[y][x]}</th>)
-                }
-                bodyF.push(<tr>{body}</tr>)
-            }
-            return( <Table dark bordered size="xl" responsive>
-                        <thead className="bg-secondary">
-                            <tr>
-                                {headers}
-                            </tr>
-                        </thead>
-                        <tbody className="bg-darker">
-                            {bodyF}
-                        </tbody>
-                    </Table>)
-        }
-    }
     return(
         <div>
                 <div>
                     {grafica(props.datos)}
-                </div>
-            <br/>
-                <div>
-                    {estadigrafo(props.est)}
                 </div>
             <br/>
                 <div id="mapContainer">

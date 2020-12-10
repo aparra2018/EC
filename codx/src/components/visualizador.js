@@ -3,9 +3,6 @@ import ReactJson from 'react-json-view'
 import './comps.css';
 export const Vis = (props) => {
     var Seleccionados=[];
-    /*function onEdit(fields){
-        console.log(fields)
-    }*/
     function onSelect(fields){
         let StrFields=JSON.stringify(fields)
         if(Seleccionados.includes(StrFields)===false){
@@ -53,7 +50,6 @@ export const Vis = (props) => {
                     JSON.parse(file)
                 }
                 theme="brewer" collapsed="1"
-                //onEdit={(file)=>onEdit(file)}
                 onSelect={(file)=>onSelect(file)}
                 />
             )
