@@ -2,11 +2,9 @@ import React, { Component } from "react";
 // 001 - Importing CSS
 import "./Map.css";
 // 002 - Adding H declaration in Window
-declare global {
   interface Window {
     H: any;
   }
-}
 // 003 - Defining IProps Interface with debug prop
 interface IProps {
   debug?: boolean;
@@ -17,6 +15,7 @@ interface IState {
   lng: number;
   zoom: number;
 }
+
 // 005 - Defining component with Typescript Generic
 class Map extends Component<IProps, IState> {
   constructor(props: IProps) {
@@ -28,18 +27,20 @@ class Map extends Component<IProps, IState> {
       zoom: 18
     };
   }
-// 007 - Implementing componentDidMount in order to load map once the component is mounted
+
+  // 007 - Implementing componentDidMount in order to load map once the component is mounted
   componentDidMount() {
     // 008 - Using H (a Class exported by HERE Map Javascript)
     let H = (window as any).H;
     // 009 - Instancing Map Platform
     var platform = new H.service.Platform({
       // 010 - Using the parameter defined in .env.local
-      apikey: "-XHkSlXTYQZOPTulgLfaUw8sEYFJIkJrEyMF8kIfugc"
+      apikey: '2X-PzvrCk1EE7L-q0o9erxnfTfpkNgiBtXmvXqxdbRg'
     });
     // 011 - Defining default Layers to apply on map
     var defaultLayers = platform.createDefaultLayers();
-// 012 - initialize the map
+
+    // 012 - initialize the map
     var map = new H.Map(
       document.getElementById("map"),
       defaultLayers.vector.normal.map,

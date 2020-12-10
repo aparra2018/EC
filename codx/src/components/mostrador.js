@@ -49,7 +49,7 @@ export const Mos = (props) => {
     function mapear(ubicacion){
         if(ubicacion!=null){
             return (
-                <Map></Map>
+                <Map/>
             )
         }
     }
